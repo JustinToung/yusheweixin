@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.java.dao.PropertyDao">
+
+	<sql id="where">
+		<where>
+			<if test="wy_user!=null and wy_user!=''">
+				and wy_user=#{wy_user}
+			</if>
+			<if test="wy_pwd!=null and wy_pwd!=''">
+				and wy_pwd=#{wy_pwd}
+			</if>
+		</where>
+	</sql>
+	<!-- 通用查询 -->
+	<select id="queryByComm" parameterType="PropertyQuery" resultType="Property" >
+		select * from property 
+		<include refid="where" />	
+	</select>
+	<!-- 通过id查询 -->
+	<select id="queryById" parameterType="int" resultType="Property" >
+		select * from property where id=#{id}
+	</select>
+	<!-- 通过id删除 -->
+	<delete id="deleteById" parameterType="int" >
+		delete from property where id=#{id}
+	</delete>
+	<!-- 物业 注册 -->
+	<insert id="insert" parameterType="Property">
+		insert into property values(null,#{wy_user},#{wy_pwd},#{wy_business},#{wy_project},#{wy_admin})
+	</insert>
+
+</mapper>

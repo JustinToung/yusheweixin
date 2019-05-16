@@ -9,4 +9,9 @@ import java.io.Serializable;
  */
 public class homeEntity implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7253720122503757049L;
+
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.java.dao.UserInfoDao">
+	
+	<!-- SQL片段 -->
+	<sql id="sql">
+		<if test="logintime !=null">
+			logintime=#{logintime},
+		</if>
+		<if test="updatetime!=null">
+			updatetime=#{updatetime}
+		</if>
+	</sql>
+	
+	<!-- 查询一条语句 -->
+	<select id="queryByOpenId" parameterType="String" resultType="UserInfoEntity" >	
+		select * from UserInfo where openId=#{openId}	
+	</select>
+	<!-- 新增用户 -->
+	<insert id="insertUserInfo" parameterType="UserInfoEntity" >
+		insert into UserInfo(id,openId,nickName,gender,avatarUrl,province,city,createtime,logintime,unionId,position)
+		values(null,#{openId},#{nickName},#{gender},#{avatarUrl},#{province},#{city},#{createtime},#{logintime},#{unionId},#{position})	
+	</insert>
+	<!-- 修改用户 -->
+	<update id="updateUserInfo" parameterType="UserInfoEntity">
+		update UserInfo 
+		<set>
+			<include refid="sql" />
+		</set> 
+		where openId=#{openId}
+	</update>
+
+</mapper>
