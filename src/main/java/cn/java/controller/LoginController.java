@@ -27,35 +27,19 @@ import cn.java.util.HttpClientUtil;
  */
 @Controller
 public class LoginController {
-	// 注入service
-	@Autowired
-	LoginService ls;
-
-
-
-	// 手机号码
-	// private String wx_phone;
 	// 用户名
 	private String Uid = "aabbcc123";
 	// 接口安全秘钥
 	private String Key = "d41d8cd98f00b204e980";
-
 	// 手机号码，
-	// private String smsMob = getlogin(wx_phone);
 	private String smsMob = "";
 	// 短信内容
-	// private String smsText = "您的验证码是" + getRandNum();
 	private String smsText = "";
 
 	// 点击获取验证码 获取手机号码并发送验证码到该手机号
 	@RequestMapping(method = RequestMethod.POST, value = "/getcode.do")
 	@ResponseBody
 	public String addphone(String wx_phone) {
-		
-		// 获取到的手机号码存入数据库
-		//loginService.setlogin(wx_phone);
-		
-		
 		HttpClientUtil client = HttpClientUtil.getInstance();
 		smsMob = wx_phone;
 		smsText = "您的验证码是" + getRandNum();
