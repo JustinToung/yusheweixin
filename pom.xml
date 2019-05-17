@@ -154,7 +154,7 @@
 			<version>1.18.1</version>
 		</dependency>
 
-		<!-- httpclient 4.3.5-->
+		<!-- httpclient 4.3.5 -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
@@ -196,11 +196,8 @@
 			<version>4.12</version>
 		</dependency>
 
-
-
-
-
-
+		
+    
 
 
 

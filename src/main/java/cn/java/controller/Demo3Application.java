@@ -10,7 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  */
 //包扫描  controller service cn.java.controller,cn.java.service,cn.java.impl,cn.java.entity,cn.java.vo
-@SpringBootApplication(scanBasePackages= {"cn.java.controller,cn.java.service,cn.java.impl,cn.java.util"})
+//@SpringBootApplication(scanBasePackages= {"cn.java.controller,cn.java.service,cn.java.impl,cn.java.util"})
+@SpringBootApplication(scanBasePackages= {"cn.java.controller","cn.java.impl","cn.java.service","cn.java.util"})
 //默认配置  
 @EnableAutoConfiguration
 //扫描mapper

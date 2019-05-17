@@ -1,6 +1,8 @@
 package cn.java.controller;
 
+import java.util.Random;
 import javax.servlet.http.HttpSession;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import cn.java.service.LoginService;
 import cn.java.util.HttpClientUtil;
 
 /**
@@ -19,45 +21,31 @@ import cn.java.util.HttpClientUtil;
  */
 @Controller
 public class LoginController {
-	
-	
-	// 注入service 类
+	// 注入service
+	@Autowired
+	LoginService ls;
 
-
-	
 	// 手机号码
-	private String wx_phone;
+	// private String wx_phone;
 	// 用户名
 	private String Uid = "aabbcc123";
 	// 接口安全秘钥
 	private String Key = "d41d8cd98f00b204e980";
 
 	// 手机号码，
-	private String smsMob = getlogin(wx_phone);
+	// private String smsMob = getlogin(wx_phone);
+	private String smsMob = "";
 	// 短信内容
-	private String smsText = "您的验证码是" + getRandNum();
-
-	// 生成一个4位随机数 作为验证码发送给用户
-	public static int getRandNum() {
-		int yzm = (int) (Math.random() * 10000);
-		return yzm;
-	}
+	// private String smsText = "您的验证码是" + getRandNum();
+	private String smsText = "";
 
 	// 点击获取验证码 获取手机号码并发送验证码到该手机号
 	@RequestMapping(method = RequestMethod.POST, value = "/getcode.do")
 	@ResponseBody
-	public String getlogin(String wx_phone) {
-		
-		// 获取到的手机号码存入数据库
-		//loginService.setlogin(wx_phone);
-
-		
-		
-		
-		
+	public String addphone(String wx_phone) {
 		HttpClientUtil client = HttpClientUtil.getInstance();
 		smsMob = wx_phone;
-		
+		smsText = "您的验证码是" + getRandNum();
 		// UTF发送
 		int result = client.sendMsgUtf8(Uid, Key, smsText, smsMob);
 		if (result > 0) {
@@ -65,7 +53,18 @@ public class LoginController {
 		} else {
 			System.out.println(client.getErrorMsg(result));
 		}
+		System.out.println("随机验证码" + smsText);
 		return wx_phone;
+	}
+
+	// 生成一个6位随机数 作为验证码发送给用户
+	public String getRandNum() {
+		Random random = new Random();
+		String rt = "";
+		for (int i = 0; i < 6; i++) {
+			rt += random.nextInt(10);
+		}
+		return rt;
 	}
 
 	/**
@@ -74,14 +73,31 @@ public class LoginController {
 	@RequestMapping(method = RequestMethod.POST, value = "/denglu.do")
 	@ResponseBody
 	public String register(String wx_phone, String wx_yanzheng, HttpSession sess) {
-		System.out.println("手机号码---" + wx_phone);
-		System.out.println("验证码------" + wx_yanzheng);
-		// 获取页面输入的手机号码和验证码后查询数据库进行判断
-		// 判断类型 业主或者物业
-		// 根据账号类型进入页面
-		sess.setAttribute("wx_yanzheng", "wx_yanzheng");
-		sess.setAttribute(smsText, "smsText");
-		return wx_yanzheng;
+		// 截取字符串进行对比
+		String sms = smsText;
+		int i = 6;
+		sms = sms.substring(i);
+		if (wx_yanzheng.equals(sms)) {
+			return "登录成功";
+		} else {
+			return "登录失败，请重新登录";
+		}
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
