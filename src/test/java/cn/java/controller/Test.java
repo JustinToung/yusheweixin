@@ -13,9 +13,8 @@ import cn.java.service.UserInfoService;
 public class Test {
 	
 	@Autowired
-	UserInfoService us;
+	UserInfoService us;	
 	
-	@org.junit.Test
 	public void testQueryUserInfo() {
 		UserInfoEntity queryByOpenId = us.queryByOpenId("1000");
 		System.out.println(queryByOpenId.getOpenId());

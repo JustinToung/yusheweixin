@@ -31,7 +31,21 @@ public class UserInfoEntity implements Serializable {
 	private String unionId;//用户unionId(通过session_key,iv,encryptedData获取)
 	private String username;//自己定的用户名
 	private int position;//判断业主还是物业  （暂定 1 是业主 -1是物业）
+	private String password;//密码
+	private String account;//账号（只能修改一次）
 	
+	public String getAccount() {
+		return account;
+	}
+	public void setAccount(String account) {
+		this.account = account;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public int getId() {
 		return id;
 	}

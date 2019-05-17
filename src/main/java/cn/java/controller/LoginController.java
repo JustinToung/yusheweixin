@@ -4,13 +4,19 @@ import java.util.Random;
 import javax.servlet.http.HttpSession;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
 import cn.java.service.LoginService;
+
+
 import cn.java.util.HttpClientUtil;
 
 /**
@@ -24,6 +30,8 @@ public class LoginController {
 	// 注入service
 	@Autowired
 	LoginService ls;
+
+
 
 	// 手机号码
 	// private String wx_phone;
@@ -43,6 +51,11 @@ public class LoginController {
 	@RequestMapping(method = RequestMethod.POST, value = "/getcode.do")
 	@ResponseBody
 	public String addphone(String wx_phone) {
+		
+		// 获取到的手机号码存入数据库
+		//loginService.setlogin(wx_phone);
+		
+		
 		HttpClientUtil client = HttpClientUtil.getInstance();
 		smsMob = wx_phone;
 		smsText = "您的验证码是" + getRandNum();
@@ -56,6 +69,7 @@ public class LoginController {
 		System.out.println("随机验证码" + smsText);
 		return wx_phone;
 	}
+	
 
 	// 生成一个6位随机数 作为验证码发送给用户
 	public String getRandNum() {

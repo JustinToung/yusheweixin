@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.java.dao.OwnerDao">
+	<resultMap type="cn.java.entity.OwnerEntity" id="ownermap">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="yz_user" property="yz" jdbcType="VARCHAR" />
+		<result column="yz_psd" property="psd" jdbcType="VARCHAR" />
+		<result column="yz_confirmpsd" property="confirmpsd"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,yz_user,yz_psd,yz_confirmpsd
+	</sql>
+	<!--新增注册  -->
+	<insert id="registerOwner" parameterType="cn.java.entity.OwnerEntity"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into owner
+		(id,yz_user,yz_psd,yz_confirmpsd)
+		values
+		(#{id,jdbcType=INTEGER},#{yz,jdbcType=VARCHAR},#{psd,jdbcType=VARCHAR},#{confirmpsd,jdbcType=VARCHAR})
+	</insert>
+	
+	<!-- 查询 -->
+	<select id="selectByYz" resultMap="ownermap" parameterType="String">
+		select 
+		<include refid="Base_Column_List" />
+		from owner where yz_user=#{yz,jdbcType=VARCHAR}
+	</select>
+
+</mapper>
