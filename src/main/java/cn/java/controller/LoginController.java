@@ -2,12 +2,10 @@ package cn.java.controller;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 
 import cn.java.util.HttpClientUtil;
 
@@ -22,7 +20,6 @@ public class LoginController {
 	
 	
 	// 注入service 类
-
 
 	
 	// 手机号码
@@ -50,9 +47,6 @@ public class LoginController {
 		
 		// 获取到的手机号码存入数据库
 		//loginService.setlogin(wx_phone);
-
-		
-		
 		
 		
 		HttpClientUtil client = HttpClientUtil.getInstance();
@@ -67,6 +61,7 @@ public class LoginController {
 		}
 		return wx_phone;
 	}
+	
 
 	/**
 	 * 点击 登陆 获取验证码进行判断是否输入正确
