@@ -2,7 +2,6 @@ package cn.java.controller;
 
 import java.io.IOException;
 import java.util.Map;
-
 import org.apache.commons.collections.map.HashedMap;
 import org.junit.Test;
 import org.springframework.stereotype.Controller;
@@ -10,12 +9,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import cn.java.entity.PersonEntity;
 
 /**
@@ -30,11 +27,10 @@ public class YusheAndroid {
 	/**
 	 * 功能描述:通过request的方式来获取到json数据<br/>
 	 * 
-	 * @param jsonobject
-	 *            这个是阿里的 fastjson对象
-	 * @return 页面传参数使用---method = RequestMethod.POST, produces =
-	 *         "application/json;charset=UTF-8" 注解接收参数--@RequestBody JSONObject
-	 *         jsonParam
+	 * @param    jsonobject   这个是阿里的 fastjson对象
+	 * @return    页面传参数使用---method = RequestMethod.POST, 
+	 * 注解接收参数       produces ="application/json;charset=UTF-8" 
+	 * @RequestBody  JSONObjectjsonParam
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/data.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -59,12 +55,13 @@ public class YusheAndroid {
 		map.put("b", "wertwer");
 		map.put("c", "sdfgsdfgv");
 		map.put("d", "sdfsdf");
+		//二选一
 		JSONObject json = new JSONObject();
 		json.put("code", "1");
 		json.put("msg", "true");
 		json.put("b", "oihi");
 		json.put("c", "oihi");
-		return json + "+" + map;
+		return json + "<br>" + map;
 	}
 
 	// 测试json方法------------------------
@@ -131,8 +128,8 @@ public class YusheAndroid {
 	 * 方法3 利用GSON方式： 由实体类生成Json字符串：
 	 */
 	
-	  @Test public void EntityToJson1() { PersonEntity person = new
-	  PersonEntity("张三", "男", 25); }
+	/*  @Test public void EntityToJson1() { PersonEntity person = new
+	  PersonEntity("张三", "男", 25); }*/
 	  //Gson gson = new Gson();  
 	 // String jsonString= gson.toJson(person);  
 	  //System.out.println(jsonString); }
