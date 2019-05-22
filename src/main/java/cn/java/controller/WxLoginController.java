@@ -17,8 +17,13 @@ import cn.java.service.UserInfoService;
 import cn.java.util.AesUtil;
 import cn.java.util.ConstantsUntil;
 import cn.java.util.WxHttpClientUtil;
+import net.sf.json.JSONArray;
 import cn.java.util.JsonResult;
 
+/**
+ * @author LIXIAOWANG
+ *	微信授权
+ */
 @RestController
 public class WxLoginController {
 
@@ -27,18 +32,21 @@ public class WxLoginController {
 	@Autowired
 	UserInfoService userInfoService;
 	
-//	, @RequestParam("avatarUrl") String avatarUrl,
-//	@RequestParam("nickName") String nickName, @RequestParam("gender") String gender,
-//	@RequestParam("city") String city, @RequestParam("province") String province
-
+	
+	/**
+	 * 微信授权登陆
+	 * @param code 
+	 * @param user 用户信息
+	 * @return
+	 */
 	@PostMapping("/tologin.do")
-	public JsonResult wx_Login(@RequestParam("code") String code,
-			@RequestParam("encryptedData") String encryptedData,
-			@RequestParam("iv")String iv,UserInfoEntity user) {
+	public Object wx_Login(@RequestParam("code") String code,
+			/*@RequestParam("encryptedData") String encryptedData,
+			@RequestParam("iv")String iv,*/UserInfoEntity user) {
 //		System.out.println("===="+code);
-		System.out.println(user.getAvatarUrl()+"=="+user.getNickName()+"=="+
+		/*System.out.println(user.getAvatarUrl()+"=="+user.getNickName()+"=="+
 				user.getGender()+"=="+user.getCity()+"=="+user.getProvince()
-				);
+				);*/
 		// 配置请求参数
 		Map<String, String> param = new HashMap<>();
 		param.put("appid", ConstantsUntil.WX_LOGIN_APPID);
@@ -56,7 +64,7 @@ public class WxLoginController {
 		
 		try {
 			//获取微信的UnionId信息
-			String union_id=AesUtil.decrypt(encryptedData, session_key, iv, "UTF-8");
+//			String union_id=AesUtil.decrypt(encryptedData, session_key, iv, "UTF-8");
 			// 根据返回的user实体类，判断用户是否是新用户，不是的话，更新最新登录时间，是的话，将用户信息存到数据库
 			UserInfoEntity userInfo=userInfoService.queryByOpenId(open_id);
 			if (userInfo!=null) {
@@ -69,25 +77,30 @@ public class WxLoginController {
 				user.setOpenId(open_id);
 				user.setCreatetime(new Date());
 				user.setLogintime(new Date());
-				user.setUnionId(union_id);
+//				user.setUnionId(union_id);
+				user.setUnionId("union_id");
 				user.setPosition(0);
-				if ("1".equals(user.getGender())) {
-					user.setGender("男");
-				}else {
-					user.setGender("女");
-				}
-				
+//				if ("1".equals(user.getGender())) {
+//					user.setGender("男");
+//				}else {
+//					user.setGender("女");
+//				}
+//				
 				int num = userInfoService.insertUserInfo(user);
 				if (num!=1) {
+					//return "error";
 					return new JsonResult(JsonResult.ERROR);
 				}
 			}
-			result.put("user",user);
+			result.put("user",userInfo);
 //			result.put("session_key", session_key); 
 //			result.put("open_id", open_id);
 //			result.put("union_id", union_id);
+//			JSONArray json=JSONArray.fromObject(result);
+//			return json;
 //			System.out.println(new JsonResult(result, JsonResult.SUCCESS));
-			return new JsonResult(result, JsonResult.SUCCESS);
+//			return new JsonResult(result, JsonResult.SUCCESS);
+			return result;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			return new JsonResult(JsonResult.ERROR);

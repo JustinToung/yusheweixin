@@ -1,34 +1,24 @@
-package cn.java.controller;
+package cn.java.util;
 
 import java.util.UUID;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 
-import cn.java.util.ConstantsUntil;
-
 /**
- * 从小程序上传图片到服务器
+ * 文件上传服务器和删除服务器中文件工具类
  * @author LIXIAOWANG
  *
  */
-@Controller
-public class UpLoadController {
-	
+public class FileServerUtil {
+		
 	/**
-	 * 上传图片到服务器
+	 * 上传文件的方法
 	 * @param file
+	 * @param serverPath
 	 * @return
 	 */
-	@RequestMapping(method=RequestMethod.POST,consumes="multipart/form-data",value="/server.do")
-	@ResponseBody
-	public String serverUpload(MultipartFile file) {
+	public String serverUpload(MultipartFile file,String serverPath) {
 		//UUID算法
 		String pfix=UUID.randomUUID().toString();
 		//生成文件名
@@ -37,16 +27,30 @@ public class UpLoadController {
 		//调用Jersey服务
 		Client client=new Client();
 		//将图片定义成web资源
-		WebResource wr=client.resource(ConstantsUntil.IMGSERVER+filename);
+		WebResource wr=client.resource(serverPath+filename);
 		try {
 			//将源文件以二进制流的形式写入web资源中
 			wr.put(String.class,file.getBytes());
 			//返回完整路径
-			return ConstantsUntil.IMGSERVER+filename;
+			return serverPath+filename;
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
 			return "error";
 		}
+	}
+	
+	/**
+	 * 删除服务器的方法
+	 * @param url 
+	 */
+	public void deleteServerFile(String url) {
+		// 调用Jersey服务
+		Client client = new Client();
+		// 将图片定义成web资源
+		WebResource resource = client.resource(url);
+		resource.delete();
+//		System.out.println("删除成功");
+
 	}
 
 }
