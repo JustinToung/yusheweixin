@@ -1,6 +1,5 @@
 package cn.java.controller;
 
-import java.util.Map;
 import java.util.Random;
 import javax.servlet.http.HttpSession;
 
