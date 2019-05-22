@@ -1,28 +1,19 @@
 package cn.java.controller;
 
+import java.util.Map;
 import java.util.Random;
 import javax.servlet.http.HttpSession;
-
-
-
-import org.springframework.beans.factory.annotation.Autowired;
-
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-
-import cn.java.service.LoginService;
-
-
 import cn.java.util.HttpClientUtil;
 
 /**
  * 用户登录类
  * 
- * @author Administrator
+ * @author zxc
  *
  */
 @Controller
@@ -53,7 +44,6 @@ public class LoginController {
 		System.out.println("随机验证码" + smsText);
 		return wx_phone;
 	}
-	
 
 	// 生成一个6位随机数 作为验证码发送给用户
 	public String getRandNum() {
@@ -84,18 +74,5 @@ public class LoginController {
 
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

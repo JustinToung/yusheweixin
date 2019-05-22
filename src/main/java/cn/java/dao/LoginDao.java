@@ -1,6 +1,10 @@
 package cn.java.dao;
 
-
+/**
+ * 
+ * @author zxc
+ *
+ */
 public interface LoginDao {
 	
 	//手机号码
