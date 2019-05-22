@@ -17,7 +17,7 @@ import cn.java.util.LicenseNumberRegexUtil;
 import cn.java.vo.PropertyQuery;
 
 /**
- * @author Administrator
+ * @author LIXIAOWANG
  * 业务视图层 用来和前端页面交互	
  */
 @Controller
@@ -38,10 +38,10 @@ public class PropertyController {
 		
 		PropertyQuery query=new PropertyQuery();
 		query.setWy_user(property.getWy_user());
-		boolean result=LicenseNumberRegexUtil.isLicense_18(property.getWy_business());
-		if (result!=true) {
-			return "business_error";
-		}
+//		boolean result=LicenseNumberRegexUtil.isLicense_18(property.getWy_business());
+//		if (result!=true) {
+//			return "business_error";
+//		}
 		
 		//判断手机号是否已存在
 		List<Property> comm = ps.queryByComm(query);
