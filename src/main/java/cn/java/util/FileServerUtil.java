@@ -38,7 +38,22 @@ public class FileServerUtil {
 			return "error";
 		}
 	}
-	
+	/**
+	 * 批量上传文件
+	 * @param file
+	 * @param serverPath
+	 * @return
+	 */
+	public String bacthFileUpload(MultipartFile[] file,String serverPath) {
+		StringBuffer buffer = new StringBuffer();
+ 		for (MultipartFile multipartFile : file) {
+ 			String str = serverUpload(multipartFile,serverPath);
+ 			buffer.append(str);
+ 			buffer.append(",");
+ 		}
+ 		String all = buffer.substring(0, buffer.length() - 1);		
+		return all;
+	}
 	/**
 	 * 删除服务器的方法
 	 * @param url 
