@@ -198,12 +198,6 @@
 			<artifactId>pagehelper-spring-boot-starter</artifactId>
 			<version>1.2.5</version>
 		</dependency>
-		<!-- 实体类@data注解依赖 代替getter setter tostring 使用 -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.16.10</version>
-		</dependency>
 
 		<!-- 打包使用 -->
 		<!-- spring boot tomcat jsp 支持开启 移除嵌入式tomcat插件 -->

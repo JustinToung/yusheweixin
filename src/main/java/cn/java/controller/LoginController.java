@@ -1,11 +1,11 @@
 package cn.java.controller;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -113,8 +113,37 @@ public class LoginController {
 	//默认访问首页
 	@RequestMapping("/")
 	public String classindexshouye() {
+		LoginEntity aa=new LoginEntity();
 		return "/admin/shouye";
 		
 	}	
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
