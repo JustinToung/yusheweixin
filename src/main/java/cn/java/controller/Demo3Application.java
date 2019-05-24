@@ -4,6 +4,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 /**
  * 程序启动类
  * @author Administrator
@@ -16,6 +17,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @EnableAutoConfiguration
 //扫描mapper
 @MapperScan(basePackages= {"cn.java.dao"})
+//开启redis 缓存
+@EnableCaching
 public class Demo3Application {
 	
 	public static void main(String[] args) {

@@ -1,12 +1,20 @@
 package cn.java.controller;
 
+import java.util.List;
 import java.util.Random;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.github.pagehelper.PageHelper;
+
+import cn.java.entity.LoginEntity;
+import cn.java.service.LoginService;
 import cn.java.util.HttpClientUtil;
 
 /**
@@ -73,5 +81,39 @@ public class LoginController {
 
 	
 	
-
+	//测试------------------------------------------------------------------------------------
+	
+	@Autowired
+	private LoginService  ls;
+	
+	//分页
+	@RequestMapping("/goods.do")
+	public String togoodspage(ModelMap model) {
+		List<LoginEntity>goodList=ls.getqAllGoods();
+		model.addAttribute("goodList", goodList);
+		return "/fount/index";
+		
+	}
+	
+	//2
+	@RequestMapping("/qw")
+	@ResponseBody
+	public String qw() {
+		PageHelper.startPage("");//分页
+		return ls.getqw();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

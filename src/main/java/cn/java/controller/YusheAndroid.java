@@ -49,21 +49,19 @@ public class YusheAndroid {
 	 */
 	@ResponseBody
 	@RequestMapping("/add.do")
-	public String setJson() {
-		Map<String, Object> map = new HashedMap();
-		map.put("a", "123456");
-		map.put("b", "wertwer");
-		map.put("c", "sdfgsdfgv");
-		map.put("d", "sdfsdf");
-		//二选一
+	public JSONObject setJson() {
 		JSONObject json = new JSONObject();
 		json.put("code", "1");
 		json.put("msg", "true");
 		json.put("b", "oihi");
 		json.put("c", "oihi");
-		return json + "<br>" + map;
+		return json ;
 	}
 
+	
+	
+	
+	
 	// 测试json方法------------------------
 
 	/**
