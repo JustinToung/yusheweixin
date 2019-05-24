@@ -183,7 +183,7 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 		</dependency>
-		<!--  利用GSON方式：由实体类生成Json字符串： json依赖-->
+		<!-- 利用GSON方式：由实体类生成Json字符串： json依赖 -->
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
@@ -191,29 +191,72 @@
 			<version>2.7</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper-spring-boot-starter -->
+		<!-- 分页使用依赖 -->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper-spring-boot-starter</artifactId>
+			<version>1.2.5</version>
+		</dependency>
+		<!-- 实体类@data注解依赖 代替getter setter tostring 使用 -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.10</version>
+		</dependency>
 
-
-
-
+		<!-- 打包使用 -->
+		<!-- spring boot tomcat jsp 支持开启 移除嵌入式tomcat插件 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- springboot 外部tomcat支持 -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!--打包使用 -->
+		
+		
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.5.1</version> <!-- 3.8.0 -->
+				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
-					<encoding>UTF-8</encoding>
+					<skipTests>true</skipTests>
 				</configuration>
 			</plugin>
 			<plugin>
+				<!-- 该插件的功能是 项目打包发布处理 -->
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<!-- 设置程序执行主类 -->
+					<fork>true</fork>
+					<!--打成 Controller.jar包 -->
+					<maimClass> cn.java.controller.Demo3Application</maimClass>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
+
 	</build>
+	<!-- <build> <plugins> <plugin> <groupId>org.apache.maven.plugins</groupId> 
+		<artifactId>maven-compiler-plugin</artifactId> <configuration> <source>1.7</source> 
+		<target>1.7</target> <encoding>UTF-8</encoding> <maimClass> cn.java.controller.Demo3Application</maimClass> 
+		</configuration> </plugin> <plugin> <groupId>org.springframework.boot</groupId> 
+		<artifactId>spring-boot-maven-plugin</artifactId> </plugin> </plugins> </build> -->
 
 </project>

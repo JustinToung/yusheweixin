@@ -33,12 +33,13 @@ public class LoginImpl implements LoginService{
 
 
 
+	//第二种分页方法  pageHelper
 	@Override
-	public String getqw() {
-		return logindao.getqw();
-		
-		
+	public List<LoginEntity> getqw() {
+		return logindao.getAllGoods();
 	}
+
+	
 
 
 	

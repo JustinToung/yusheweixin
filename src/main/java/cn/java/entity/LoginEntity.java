@@ -1,21 +1,27 @@
 package cn.java.entity;
 
+
 import java.io.Serializable;
 
-public class LoginEntity implements Serializable{
+import lombok.Data;
 
+
+//@Data
+public class LoginEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2333863857729998210L;
-	
-	
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String goodName;
 	private float price;
 	private int  nums;
 	
 	
+	@Override
+	public String toString() {
+		return "LoginEntity [id=" + id + ", goodName=" + goodName + ", price=" + price + ", nums=" + nums + "]";
+	}
 	public int getId() {
 		return id;
 	}
@@ -40,16 +46,5 @@ public class LoginEntity implements Serializable{
 	public void setNums(int nums) {
 		this.nums = nums;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	@Override
-	public String toString() {
-		return "LoginEntity [id=" + id + ", goodName=" + goodName + ", price=" + price + ", nums=" + nums + ", getId()="
-				+ getId() + ", getGoodName()=" + getGoodName() + ", getPrice()=" + getPrice() + ", getNums()="
-				+ getNums() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
-	}
-	
 	
 }

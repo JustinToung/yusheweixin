@@ -16,7 +16,8 @@ public interface LoginService {
 	
 	//查询goods表所有数据
 		public List<LoginEntity> getqAllGoods();
-		//2
-		public String getqw();
+		
+		//第二种分页方法  pageHelper
+		public List<LoginEntity>getqw();
 	
 }

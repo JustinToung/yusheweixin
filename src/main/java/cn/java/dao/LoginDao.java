@@ -20,9 +20,10 @@ public interface LoginDao {
 	//查询goods表所有数据
 	@Select("SELECT * FROM goods")
 	List<LoginEntity> getAllGoods();
-	//2
-	@Select("SELECT * FROM goods WHERE id=2")
-	 public String getqw();
+	
+	//第二种分页方法  pageHelper
+	@Select("SELECT * FROM goods")
+	 List<LoginEntity>  getqw();
 	
 	
 	

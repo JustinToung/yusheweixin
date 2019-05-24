@@ -4,6 +4,8 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
 /**
  * 程序启动类
@@ -19,11 +21,16 @@ import org.springframework.cache.annotation.EnableCaching;
 @MapperScan(basePackages= {"cn.java.dao"})
 //开启redis 缓存
 @EnableCaching
-public class Demo3Application {
+public class Demo3Application extends SpringBootServletInitializer{
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Demo3Application.class, args);
 		System.out.println("启动成功------------------------------------");      
 	}
+	
+	@Override//为了打包springboot项目
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(this.getClass());
+    }
 
 }

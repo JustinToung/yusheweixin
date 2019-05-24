@@ -1,6 +1,7 @@
 package cn.java.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 import cn.java.entity.LoginEntity;
 import cn.java.service.LoginService;
@@ -79,41 +81,40 @@ public class LoginController {
 		}
 	}
 
-	
-	
-	//测试------------------------------------------------------------------------------------
-	
+	// 测试------------------------------------------------------------------------------------
+
 	@Autowired
-	private LoginService  ls;
-	
-	//分页
-	@RequestMapping("/goods.do")
+	private LoginService ls;
+
+	// 第一种分页 方法 dataTable
+	@RequestMapping("/dataTable.do")
 	public String togoodspage(ModelMap model) {
-		List<LoginEntity>goodList=ls.getqAllGoods();
+		List<LoginEntity> goodList = ls.getqAllGoods();
 		model.addAttribute("goodList", goodList);
 		return "/fount/index";
-		
+
 	}
-	
-	//2
-	@RequestMapping("/qw")
+
+	// 第二种分页方法 pageHelper
+	//返回json数据
+	@RequestMapping("/pageHelper.do")
 	@ResponseBody
-	public String qw() {
-		PageHelper.startPage("");//分页
-		return ls.getqw();
+	public PageInfo<LoginEntity> findgoods(int page, int pageSize) {
+		// pageHelper帮助我们生成分页语句
+		List<LoginEntity> listgoods = ls.getqw();
+		// 底层原理改写sql语句
+		PageHelper.startPage(page, pageSize);
+		// 返回给客户端展示使用
+		PageInfo<LoginEntity> goodslist = new PageInfo<LoginEntity>(listgoods);
+		return goodslist;
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	//默认访问首页
+	@RequestMapping("/")
+	public String classindexshouye() {
+		return "/admin/shouye";
+		
+	}	
+
 }
