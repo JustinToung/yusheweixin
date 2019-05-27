@@ -21,6 +21,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 //扫描mapper
 @MapperScan(basePackages= {"cn.java.dao"})
 //开启redis 缓存
+@EnableCaching
 //扫描定时器开启器注解  ---扫描包,"cn.java.Tasks"
 @EnableScheduling
 public class Demo3Application extends SpringBootServletInitializer{
