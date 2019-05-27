@@ -2,6 +2,11 @@ package cn.java.util;
 
 import java.io.Serializable;
 
+/**
+ * 返回数据类
+ * @author LIXIAOWANG
+ *
+ */
 public class JsonResult implements Serializable {
 
 	/**

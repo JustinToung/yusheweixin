@@ -15,7 +15,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  */
 //包扫描  controller service cn.java.controller,cn.java.service,cn.java.impl,cn.java.entity,cn.java.vo
 //@SpringBootApplication(scanBasePackages= {"cn.java.controller,cn.java.service,cn.java.impl,cn.java.util"})
-@SpringBootApplication(scanBasePackages= {"cn.java.controller","cn.java.impl","cn.java.service","cn.java.util","cn.java.Tasks"})
+@SpringBootApplication(scanBasePackages= {"cn.java.controller","cn.java.impl","cn.java.service","cn.java.util","cn.java.Tasks","cn.java.configuration"})
 //默认配置  
 @EnableAutoConfiguration
 //扫描mapper

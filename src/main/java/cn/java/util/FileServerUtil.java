@@ -2,6 +2,8 @@ package cn.java.util;
 
 import java.io.File;
 import java.util.UUID;
+
+import org.springframework.util.ClassUtils;
 import org.springframework.web.multipart.MultipartFile;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
@@ -14,9 +16,8 @@ import com.sun.jersey.api.client.WebResource;
  */
 public class FileServerUtil {
 	// 图片上传路径
-	// private static final String
-	// filePath=ClassUtils.getDefaultClassLoader().getResource("").getPath()+"upload/";
-	private static final String filePath = "F:\\apache-tomcat\\webapps\\upload\\images";
+//	private static String filePath = ClassUtils.getDefaultClassLoader().getResource("").getPath() + "static/upload/";
+	private static final String filePath = "F:/upload/images";
 
 	/**
 	 * 上传文件的方法
@@ -96,7 +97,12 @@ public class FileServerUtil {
 		// 使用UUID算法生成前缀
 		String pfix = UUID.randomUUID().toString();
 		// 生成文件名 前缀+原始文件名
-		String filename = pfix + file.getOriginalFilename();
+		String filename = file.getOriginalFilename();
+		int lastIndexOf = filename.lastIndexOf(".");
+		// 获取后缀名
+		String substring = filename.substring(lastIndexOf);
+		// 生成文件名 前缀+后缀
+		filename = pfix + substring;
 		// 文件上传路径
 		String path = filePath;
 		// 生成目标文件 File.separator分隔符
