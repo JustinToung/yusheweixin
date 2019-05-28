@@ -5,7 +5,7 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  * 营业执照校验类
- * @author Administrator
+ * @author LIXIAOWANG
  *
  */
 public class LicenseNumberRegexUtil {

@@ -4,7 +4,7 @@ import cn.java.entity.UserInfoEntity;
 
 /**
  * 用户信息的数据访问层
- * @author Administrator
+ * @author LIXIAOWANG
  *
  */
 public interface UserInfoDao {

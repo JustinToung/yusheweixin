@@ -5,7 +5,7 @@ import cn.java.entity.UserInfoEntity;
 /**
  * 用户信息业务逻辑接口类
  * 
- * @author Administrator
+ * @author LIXIAOWANG
  *
  */
 public interface UserInfoService {

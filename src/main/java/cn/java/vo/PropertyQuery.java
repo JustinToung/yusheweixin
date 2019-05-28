@@ -1,5 +1,9 @@
 package cn.java.vo;
 
+/**
+ * @author LIXIAOWANG
+ *
+ */
 public class PropertyQuery {
 	
 	private int id;

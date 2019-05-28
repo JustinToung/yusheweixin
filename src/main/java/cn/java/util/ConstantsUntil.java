@@ -2,7 +2,7 @@ package cn.java.util;
 
 /**
  * 常量类
- * @author Administrator
+ * @author LIXIAOWANG
  *
  */
 public final class ConstantsUntil {

@@ -11,6 +11,11 @@ import cn.java.entity.Property;
 import cn.java.exception.AppException;
 import cn.java.service.PropertyService;
 import cn.java.vo.PropertyQuery;
+/**
+ * 物业业务逻辑层
+ * @author LIXIAOWANG
+ *
+ */
 @Service
 @Transactional
 public class PropertyImpl implements PropertyService {

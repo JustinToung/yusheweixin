@@ -8,7 +8,7 @@ import cn.java.vo.PropertyQuery;
 
 /**
  * 物业数据逻辑层
- * @author Administrator
+ * @author LIXIAOWANG
  *
  */
 public interface PropertyService {

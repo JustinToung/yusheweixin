@@ -14,7 +14,7 @@ import java.security.spec.InvalidParameterSpecException;
 
 /**
  * unionId解密工具类
- * @author Administrator
+ * @author LIXIAOWANG
  *
  */
 public class AesUtil {

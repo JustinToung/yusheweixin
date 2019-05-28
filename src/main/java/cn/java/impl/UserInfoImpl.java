@@ -10,7 +10,7 @@ import cn.java.service.UserInfoService;
 
 /**
  * 用户信息业务逻辑实现类
- * @author Administrator
+ * @author LIXIAOWANG
  *
  */
 @Service

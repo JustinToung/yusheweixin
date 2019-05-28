@@ -7,7 +7,7 @@ import cn.java.vo.PropertyQuery;
 
 /**
  * 物业数据操作
- * @author Administrator
+ * @author LIXIAOWANG
  *
  */
 public interface PropertyDao {

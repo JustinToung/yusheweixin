@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * 物业实体类
- * @author Administrator
+ * @author LIXIAOWANG
  *
  */
 public class Property implements Serializable {

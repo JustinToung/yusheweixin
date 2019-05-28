@@ -1,5 +1,10 @@
 package cn.java.exception;
 
+/**
+ * 异常类
+ * @author LIXIAOWANG
+ *
+ */
 public class AppException extends Exception {
 
 	/**

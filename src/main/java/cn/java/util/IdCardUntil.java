@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 /**
  * 身份证号码校验类
- * @author Administrator
+ * @author LIXIAOWANG
  *
  */
 public class IdCardUntil {

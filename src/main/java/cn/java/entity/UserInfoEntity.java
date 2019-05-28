@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * 用户信息实体类
- * @author Administrator
+ * @author LIXIAOWANG
  *
  */
 public class UserInfoEntity implements Serializable {

@@ -21,7 +21,7 @@ import org.apache.http.util.EntityUtils;
 
 /**
  * 发送请求的工具类(获取微信的openId、session_key等数据)
- * @author 
+ * @author LIXIAOWANG
  *
  */
 public class WxHttpClientUtil {
