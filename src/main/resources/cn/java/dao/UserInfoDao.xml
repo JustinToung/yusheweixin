@@ -12,14 +12,14 @@
 		</if>
 	</sql>
 	
-	<!-- 查询一条语句 -->
+	<!-- 授权登陆时通过openId查询该用户是否已授权 -->
 	<select id="queryByOpenId" parameterType="String" resultType="UserInfoEntity" >	
-		select * from UserInfo where openId=#{openId}	
+		select avatarUrl,nickName,userName,telephone,yusheName,address,company,job from UserInfo where openId=#{openId}	
 	</select>
 	<!-- 新增用户 -->
 	<insert id="insertUserInfo" parameterType="UserInfoEntity" >
-		insert into UserInfo(id,openId,nickName,gender,avatarUrl,province,city,createtime,logintime,unionId,position)
-		values(null,#{openId},#{nickName},#{gender},#{avatarUrl},#{province},#{city},#{createtime},#{logintime},#{unionId},#{position})	
+		insert into userinfo(id,openId,nickName,gender,avatarUrl,province,city,createtime,logintime,unionId,enable)
+		values(null,#{openId},#{nickName},#{gender},#{avatarUrl},#{province},#{city},#{createtime},#{logintime},#{unionId},#{enable})	
 	</insert>
 	<!-- 修改用户 -->
 	<update id="updateUserInfo" parameterType="UserInfoEntity">

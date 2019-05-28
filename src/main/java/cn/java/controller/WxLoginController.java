@@ -12,13 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.fastjson.JSONObject;
 
 import cn.java.entity.UserInfoEntity;
-import cn.java.service.PropertyService;
 import cn.java.service.UserInfoService;
 import cn.java.util.AesUtil;
 import cn.java.util.ConstantsUntil;
 import cn.java.util.WxHttpClientUtil;
-import net.sf.json.JSONArray;
-import cn.java.util.JsonResult;
 
 /**
  * @author LIXIAOWANG
@@ -27,8 +24,6 @@ import cn.java.util.JsonResult;
 @RestController
 public class WxLoginController {
 
-	@Autowired
-	PropertyService ps;
 	@Autowired
 	UserInfoService userInfoService;
 	
@@ -43,10 +38,6 @@ public class WxLoginController {
 	public Object wx_Login(@RequestParam("code") String code,
 			/*@RequestParam("encryptedData") String encryptedData,
 			@RequestParam("iv")String iv,*/UserInfoEntity user) {
-//		System.out.println("===="+code);
-		/*System.out.println(user.getAvatarUrl()+"=="+user.getNickName()+"=="+
-				user.getGender()+"=="+user.getCity()+"=="+user.getProvince()
-				);*/
 		// 配置请求参数
 		Map<String, String> param = new HashMap<>();
 		param.put("appid", ConstantsUntil.WX_LOGIN_APPID);
@@ -60,7 +51,7 @@ public class WxLoginController {
 		String open_id = jsonObject.get("openid").toString();
 		String session_key = jsonObject.get("session_key").toString();
 		
-		Map<String, Object> result = new HashMap<>(); 
+		JSONObject json=new JSONObject();
 		
 		try {
 			//获取微信的UnionId信息
@@ -78,37 +69,35 @@ public class WxLoginController {
 				user.setCreatetime(new Date());
 				user.setLogintime(new Date());
 //				user.setUnionId(union_id);
-				user.setUnionId("union_id");
-				user.setPosition(0);
-//				if ("1".equals(user.getGender())) {
-//					user.setGender("男");
-//				}else {
-//					user.setGender("女");
-//				}
-//				
+				user.setUnionId(null);
+				user.setEnable(0);
+				
 				int num = userInfoService.insertUserInfo(user);
 				if (num!=1) {
-					//return "error";
-					return new JsonResult(JsonResult.ERROR);
+					json.put("code", 0);
+					json.put("message","授权失败");
+					return json;
 				}
 			}
-			result.put("user",userInfo);
-//			result.put("session_key", session_key); 
-//			result.put("open_id", open_id);
-//			result.put("union_id", union_id);
-//			JSONArray json=JSONArray.fromObject(result);
-//			return json;
-//			System.out.println(new JsonResult(result, JsonResult.SUCCESS));
-//			return new JsonResult(result, JsonResult.SUCCESS);
-			return result;
+			Map<String, Object> map=new HashMap<>();
+			map.put("avatarUrl", userInfo.getAvatarUrl());
+			map.put("nickName", userInfo.getNickName());
+			map.put("userName", userInfo.getUserName());
+			map.put("yusheName", userInfo.getYusheName());
+			map.put("telephone", userInfo.getTelephone());
+			map.put("address",userInfo.getAddress());
+			map.put("company", userInfo.getCompany());
+			map.put("job", userInfo.getJob());
+//			json.put("user",userInfo);
+			json.put("user", map);
+			return json;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			return new JsonResult(JsonResult.ERROR);
+			json.put("code", 1);
+			json.put("message", "授权失败");
+			return json;
 		}
 
-		
-		
-		
 	}
 
 }

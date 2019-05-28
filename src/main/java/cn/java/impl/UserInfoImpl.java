@@ -2,6 +2,7 @@ package cn.java.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import cn.java.dao.UserInfoDao;
 import cn.java.entity.UserInfoEntity;
@@ -13,10 +14,11 @@ import cn.java.service.UserInfoService;
  *
  */
 @Service
+@Transactional
 public class UserInfoImpl implements UserInfoService {
 	
 	@Autowired
-	UserInfoDao dao;
+	UserInfoDao userInfoDao;
 	
 	/**
 	 * 通过用户openId查询
@@ -25,7 +27,7 @@ public class UserInfoImpl implements UserInfoService {
 	 */
 	public UserInfoEntity queryByOpenId(String openId) {
 		// TODO Auto-generated method stub
-		return dao.queryByOpenId(openId);
+		return userInfoDao.queryByOpenId(openId);
 	}
 
 	/**
@@ -34,7 +36,7 @@ public class UserInfoImpl implements UserInfoService {
 	 * @return 返回成功结果
 	 */
 	public int insertUserInfo(UserInfoEntity user) {
-		int result = dao.insertUserInfo(user);
+		int result = userInfoDao.insertUserInfo(user);
 		return result;
 	}
 
@@ -44,7 +46,7 @@ public class UserInfoImpl implements UserInfoService {
 	 * @return 返回成功结果
 	 */
 	public int updateUserInfo(UserInfoEntity user) {
-		int result = dao.updateUserInfo(user);
+		int result = userInfoDao.updateUserInfo(user);
 		return result;
 	}
 
