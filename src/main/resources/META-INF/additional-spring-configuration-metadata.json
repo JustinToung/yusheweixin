@@ -48,5 +48,30 @@
     "name": "spring.datasource.initialSize",
     "type": "java.lang.String",
     "description": "A description for 'spring.datasource.initialSize'"
+  },
+  {
+    "name": "server.session-timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'server.session-timeout'"
+  },
+  {
+    "name": "server.serverlet-path",
+    "type": "java.lang.String",
+    "description": "A description for 'server.serverlet-path'"
+  },
+  {
+    "name": "file.staticAccessPath",
+    "type": "java.lang.String",
+    "description": "A description for 'file.staticAccessPath'"
+  },
+  {
+    "name": "file.uploadFolder",
+    "type": "java.lang.String",
+    "description": "A description for 'file.uploadFolder'"
+  },
+  {
+    "name": "pring.thymeleaf.prefix",
+    "type": "java.lang.String",
+    "description": "A description for 'pring.thymeleaf.prefix'"
   }
 ]}

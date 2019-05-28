@@ -19,5 +19,7 @@ public interface LoginService {
 		
 		//第二种分页方法  pageHelper
 		public List<LoginEntity>getqw();
-	
+		
+		//添加数据到数据库  
+		void addgood();
 }

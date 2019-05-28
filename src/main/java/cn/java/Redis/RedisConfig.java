@@ -1,4 +1,4 @@
-package cn.java.controller;
+package cn.java.Redis;
 /**
  * 整合Redis
  * zxc

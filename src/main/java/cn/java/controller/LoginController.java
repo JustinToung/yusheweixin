@@ -119,12 +119,21 @@ public class LoginController {
 	}	
 	
 	
+	/**
+	 * 添加数据到数据库  同步redis缓存   添加一次数据清空一次redis缓存
+	 * 曾 删  改  都需要清空redis   
+	 * 查询时  把查询的数据直接添加到redis中
+	 */
+	@RequestMapping("/addgood.do")
+	public void addgood() {
+		ls.addgood();
+	}
 	
 	
-	
-	
-	
-	
+	@RequestMapping("/zxc.do")
+	public String add() {
+		return "/admin/shouye";
+	}
 	
 	
 	
