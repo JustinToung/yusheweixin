@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>首页</title>
@@ -7,5 +7,6 @@
 <body>
 
 		<h1 style="font-size:200px;  color: red; ">欢迎光临</h1>
+			Application作用域:<span th:text="${application.num}"></span>
 </body>
 </html>

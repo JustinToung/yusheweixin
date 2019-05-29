@@ -56,6 +56,8 @@ public class LoginFilter implements Filter {
 		//放行
 		fc.doFilter(req,resp);*/
 		
+		
+//		-----------------------------------------------------
 		//application 域
 		HttpServletRequest req=(HttpServletRequest)request;
 		HttpServletResponse  resp=(HttpServletResponse)response;

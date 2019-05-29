@@ -230,6 +230,27 @@
 		</dependency>
 		<!--打包使用 -->
 		
+		<!--lombok依赖 引入 -->
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		</dependency>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	</dependencies>
 	<build>

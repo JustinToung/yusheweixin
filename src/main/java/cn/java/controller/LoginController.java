@@ -99,14 +99,15 @@ public class LoginController {
 	//返回json数据
 	@RequestMapping("/pageHelper.do")
 	@ResponseBody
-	public PageInfo<LoginEntity> findgoods(int page, int pageSize) {
+	public List<LoginEntity> findgoods(int page, int pageSize) {
+		//PageHelper.startPage(page, pageSize);
+		PageHelper.offsetPage(page, pageSize);
 		// pageHelper帮助我们生成分页语句
 		List<LoginEntity> listgoods = ls.getqw();
 		// 底层原理改写sql语句
-		PageHelper.startPage(page, pageSize);
 		// 返回给客户端展示使用
-		PageInfo<LoginEntity> goodslist = new PageInfo<LoginEntity>(listgoods);
-		return goodslist;
+		//PageInfo<LoginEntity> goodslist = new PageInfo<LoginEntity>(listgoods);
+		return listgoods;
 	}
 	
 	
