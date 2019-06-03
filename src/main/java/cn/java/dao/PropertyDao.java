@@ -2,7 +2,7 @@ package cn.java.dao;
 
 import java.util.List;
 
-import cn.java.entity.Property;
+import cn.java.entity.PropertyInfoEntity;
 import cn.java.vo.PropertyQuery;
 
 /**
@@ -13,11 +13,11 @@ import cn.java.vo.PropertyQuery;
 public interface PropertyDao {
 	
 	//新增物业
-	public int insert(Property property);
+	public int insert(PropertyInfoEntity property);
 	//通用查询
-	public List<Property> queryByComm(PropertyQuery query);
+	public List<PropertyInfoEntity> queryByComm(PropertyQuery query);
 	//通过ID查询
-	public Property queryById(int id);
+	public PropertyInfoEntity queryById(int id);
 	//通过Id删除
 	public void deleteById(int id);
 

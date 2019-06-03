@@ -10,7 +10,7 @@ import lombok.Data;
  *
  */
 @Data
-public class Property implements Serializable {
+public class PropertyInfoEntity implements Serializable {
 
 	/**
 	 * 

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import cn.java.entity.Property;
+import cn.java.entity.PropertyInfoEntity;
 import cn.java.exception.AppException;
 import cn.java.service.PropertyService;
 import cn.java.util.LicenseNumberRegexUtil;
@@ -34,7 +34,7 @@ public class PropertyController {
 	 */
 	@RequestMapping(method=RequestMethod.POST,value="/propertyRegiste.do")
 	@ResponseBody
-	public String insert(@RequestBody Property property) {
+	public String insert(@RequestBody PropertyInfoEntity property) {
 		
 		PropertyQuery query=new PropertyQuery();
 		query.setWy_user(property.getWy_user());
@@ -44,7 +44,7 @@ public class PropertyController {
 //		}
 		
 		//判断手机号是否已存在
-		List<Property> comm = ps.queryByComm(query);
+		List<PropertyInfoEntity> comm = ps.queryByComm(query);
 		if (comm==null || comm.size()!=1) {
 			try {
 				//注册
