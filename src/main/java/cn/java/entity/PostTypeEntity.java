@@ -13,7 +13,7 @@ import lombok.Data;
 public class PostTypeEntity implements Serializable {
 
 	/**
-	 * 
+	 *    
 	 */
 	private static final long serialVersionUID = 7475429211715043489L;
 	
