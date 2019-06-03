@@ -1,6 +1,8 @@
 package cn.java.util;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.util.ClassUtils;
@@ -16,75 +18,10 @@ import com.sun.jersey.api.client.WebResource;
  */
 public class FileServerUtil {
 	// 图片上传路径
-//	private static String filePath = ClassUtils.getDefaultClassLoader().getResource("").getPath() + "static/upload/";
+	// private static String filePath =
+	// ClassUtils.getDefaultClassLoader().getResource("").getPath() +
+	// "static/upload/";
 	private static final String filePath = "F:/upload/images";
-
-	/**
-	 * 上传文件的方法
-	 * 
-	 * @param file
-	 * @param serverPath
-	 * @return
-	 */
-	public static String serverUpload(MultipartFile file, String serverPath) {
-		// UUID算法
-		String pfix = UUID.randomUUID().toString();
-		// 获取文件名
-		String filename = file.getOriginalFilename();
-		// 获取文件后缀名
-		String suffix = filename.substring(filename.lastIndexOf("."));
-		// 生成文件名
-		filename = pfix + suffix;
-		// 生成文件名
-//		String filename = pfix + file.getOriginalFilename();
-		// System.out.println(filename);
-		// 调用Jersey服务
-		Client client = new Client();
-		// 将图片定义成web资源
-		WebResource wr = client.resource(serverPath + filename);
-		try {
-			// 将源文件以二进制流的形式写入web资源中
-			wr.put(String.class, file.getBytes());
-			// 返回完整路径
-			return serverPath + filename;
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			return "error";
-		}
-	}
-
-	/**
-	 * 批量上传文件
-	 * 
-	 * @param file
-	 * @param serverPath
-	 * @return
-	 */
-	public static String bacthFileUpload(MultipartFile[] file, String serverPath) {
-		StringBuffer buffer = new StringBuffer();
-		for (MultipartFile multipartFile : file) {
-			String str = serverUpload(multipartFile, serverPath);
-			buffer.append(str);
-			buffer.append(",");
-		}
-		String all = buffer.substring(0, buffer.length() - 1);
-		return all;
-	}
-
-	/**
-	 * 删除服务器的方法
-	 * 
-	 * @param url
-	 */
-	public static void deleteServerFile(String url) {
-		// 调用Jersey服务
-		Client client = new Client();
-		// 将图片定义成web资源
-		WebResource resource = client.resource(url);
-		resource.delete();
-		// System.out.println("删除成功");
-
-	}
 
 	/**
 	 * 上传文件到本地
@@ -153,7 +90,7 @@ public class FileServerUtil {
 		int lastIndexOf = path.lastIndexOf("/");
 		String substring = path.substring(lastIndexOf + 1, path.length());
 		// 获取文件所在路径
-		substring = filePath + substring;
+		substring = filePath + File.separator + substring;
 		// 生成对象文件
 		File file = new File(substring);
 		// 如果文件存在 删除文件
@@ -167,6 +104,111 @@ public class FileServerUtil {
 			returnInfo = "文件不存在！";
 		}
 		return returnInfo;
+	}
+	
+	/**
+	 * 将图片地址解析成 ：路径+图片名
+	 * 解析前的路径格式 路径/图片名1,图片名2,图片名3,……
+	 * @param filePath 数据库中的文件地址
+	 * @return 返回图片路径集合
+	 */
+	public static List<String> getFile(String filePath) {
+		int lastIndexOf = filePath.lastIndexOf("/");
+		//截取文件名
+		String substring = filePath.substring(lastIndexOf+1, filePath.length());
+		//将多个文件名转成数组
+		String[] split = substring.split(",");
+		//获取路径
+		String path = filePath.substring(0, lastIndexOf+1);
+		//将路径和文件名拼接放入集合中 返回
+		List<String> list=new ArrayList<>();
+		for(int i=0;i<split.length;i++) {
+			list.add(path+split[i]);
+		}
+		return list;
+	}
+	/**
+	 * 将图片地址解析成 ：路径+图片名
+	 * 解析前的路径格式 路径/图片名1,路径/图片名2,路径/图片名3,……
+	 * @param filePath
+	 * @return
+	 */
+	public static List<String> getFilePath(String filePath) {
+		//将多个文件名转成数组
+		String[] split = filePath.split(",");
+		//将路径和文件名拼接放入集合中 返回
+		List<String> list=new ArrayList<>();
+		for(int i=0;i<split.length;i++) {
+			list.add(split[i]);
+		}
+		return list;
+	}
+
+	/**
+	 * 上传文件的方法
+	 * 
+	 * @param file
+	 * @param serverPath
+	 * @return
+	 */
+	public static String serverUpload(MultipartFile file, String serverPath) {
+		// UUID算法
+		String pfix = UUID.randomUUID().toString();
+		// 获取文件名
+		String filename = file.getOriginalFilename();
+		// 获取文件后缀名
+		String suffix = filename.substring(filename.lastIndexOf("."));
+		// 生成文件名
+		filename = pfix + suffix;
+		// 生成文件名
+		// String filename = pfix + file.getOriginalFilename();
+		// System.out.println(filename);
+		// 调用Jersey服务
+		Client client = new Client();
+		// 将图片定义成web资源
+		WebResource wr = client.resource(serverPath + filename);
+		try {
+			// 将源文件以二进制流的形式写入web资源中
+			wr.put(String.class, file.getBytes());
+			// 返回完整路径
+			return serverPath + filename;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			return "error";
+		}
+	}
+
+	/**
+	 * 批量上传文件
+	 * 
+	 * @param file
+	 * @param serverPath
+	 * @return
+	 */
+	public static String bacthFileUpload(MultipartFile[] file, String serverPath) {
+		StringBuffer buffer = new StringBuffer();
+		for (MultipartFile multipartFile : file) {
+			String str = serverUpload(multipartFile, serverPath);
+			buffer.append(str);
+			buffer.append(",");
+		}
+		String all = buffer.substring(0, buffer.length() - 1);
+		return all;
+	}
+
+	/**
+	 * 删除服务器的方法
+	 * 
+	 * @param url
+	 */
+	public static void deleteServerFile(String url) {
+		// 调用Jersey服务
+		Client client = new Client();
+		// 将图片定义成web资源
+		WebResource resource = client.resource(url);
+		resource.delete();
+		// System.out.println("删除成功");
+
 	}
 
 }

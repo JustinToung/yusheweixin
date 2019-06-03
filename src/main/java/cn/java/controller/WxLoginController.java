@@ -70,7 +70,7 @@ public class WxLoginController {
 				user.setLogintime(new Date());
 //				user.setUnionId(union_id);
 				user.setUnionId(null);
-				user.setEnable(0);
+				user.setEnable(1);
 				
 				int num = userInfoService.insertUserInfo(user);
 				if (num!=1) {

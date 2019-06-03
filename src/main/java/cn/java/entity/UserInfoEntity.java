@@ -3,11 +3,14 @@ package cn.java.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import lombok.Data;
+
 /**
  * 用户信息实体类
  * @author LIXIAOWANG
  *
  */
+@Data
 public class UserInfoEntity implements Serializable {
 	
 	/**
@@ -37,143 +40,5 @@ public class UserInfoEntity implements Serializable {
 	private String password;//密码
 	private String idcard;//身份证
 	private String doorplate;//门牌号
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getNickName() {
-		return nickName;
-	}
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-	public String getTelephone() {
-		return telephone;
-	}
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
-	public String getYusheName() {
-		return yusheName;
-	}
-	public void setYusheName(String yusheName) {
-		this.yusheName = yusheName;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public String getCompany() {
-		return company;
-	}
-	public void setCompany(String company) {
-		this.company = company;
-	}
-	public String getJob() {
-		return job;
-	}
-	public void setJob(String job) {
-		this.job = job;
-	}
-	public String getOpenId() {
-		return openId;
-	}
-	public void setOpenId(String openId) {
-		this.openId = openId;
-	}
-	public String getUnionId() {
-		return unionId;
-	}
-	public void setUnionId(String unionId) {
-		this.unionId = unionId;
-	}
-	public String getAvatarUrl() {
-		return avatarUrl;
-	}
-	public void setAvatarUrl(String avatarUrl) {
-		this.avatarUrl = avatarUrl;
-	}
-	public String getProvince() {
-		return province;
-	}
-	public void setProvince(String province) {
-		this.province = province;
-	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public Date getCreatetime() {
-		return createtime;
-	}
-	public void setCreatetime(Date createtime) {
-		this.createtime = createtime;
-	}
-	public Date getUpdatetime() {
-		return updatetime;
-	}
-	public void setUpdatetime(Date updatetime) {
-		this.updatetime = updatetime;
-	}
-	public Date getLogintime() {
-		return logintime;
-	}
-	public void setLogintime(Date logintime) {
-		this.logintime = logintime;
-	}
-	public int getEnable() {
-		return enable;
-	}
-	public void setEnable(int enable) {
-		this.enable = enable;
-	}
-	public Date getBirthday() {
-		return birthday;
-	}
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
-	public String getGender() {
-		return gender;
-	}
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getIdcard() {
-		return idcard;
-	}
-	public void setIdcard(String idcard) {
-		this.idcard = idcard;
-	}
-	public String getDoorplate() {
-		return doorplate;
-	}
-	public void setDoorplate(String doorplate) {
-		this.doorplate = doorplate;
-	}
 	
-	
-	
-
-	
-
-
 }

@@ -7,7 +7,7 @@ package cn.java.util;
  */
 public final class ConstantsUntil {
 	//图片服务器 路径
-	public static final String IMGSERVER="http://localhost:8081/upload/images/";
+	public static final String IMGSERVER="http://localhost:8080/static/image/";
 	//视频服务器地址
 	public static final String VIDEOSERVER="http://localhost:8081/upload/videos/";
 	// 请求的网址 
