@@ -1,5 +1,7 @@
 package cn.java.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
@@ -28,4 +30,11 @@ public interface CommunityDao {
 	 */
 	@Select("select * from CommunityInfo where id=#{id}")
 	public CommunityInfoEntity selectById(int id);
+	
+	/**
+	 * 查询所用社区
+	 * @return
+	 */
+	@Select("select * from CommunityInfo")
+	public List<CommunityInfoEntity> selectAll();
 }

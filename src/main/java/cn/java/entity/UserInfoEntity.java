@@ -40,5 +40,6 @@ public class UserInfoEntity implements Serializable {
 	private String password;//密码
 	private String idcard;//身份证
 	private String doorplate;//门牌号
+	private int communityId;//社区id
 	
 }

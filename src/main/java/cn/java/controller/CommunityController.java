@@ -1,5 +1,7 @@
 package cn.java.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,13 +11,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.databind.Module.SetupContext;
 
 import cn.java.entity.CommunityInfoEntity;
+import cn.java.entity.UserInfoEntity;
 import cn.java.service.CommunityService;
-import cn.java.util.ConstantsUntil;
+import cn.java.service.UserInfoService;
 import cn.java.util.FileServerUtil;
 
 /**
@@ -28,6 +29,8 @@ import cn.java.util.FileServerUtil;
 public class CommunityController {
 	@Autowired
 	CommunityService cService;
+	@Autowired
+	UserInfoService userInfoService;
 	
 	
 	/**
@@ -59,6 +62,69 @@ public class CommunityController {
 		}
 		return json;
 	}
+	
+	/**
+	 * 查询所有信息
+	 * @return
+	 */
+	@RequestMapping("/queryall.do")
+	@ResponseBody
+	public Object queryAll() {
+		List<CommunityInfoEntity> all = cService.selectAll();
+		JSONObject json=new JSONObject();
+		json.put("data", all);
+		return json;
+	}
+	
+	/**
+	 * 加入社区
+	 * @param communityId 社区id
+	 * @param userId 用户id
+	 * @return
+	 */
+	@RequestMapping("/joincommunity.do")
+	@ResponseBody
+	public Object joinCommunity(int communityId,int userId) {
+		JSONObject json=new JSONObject();
+		if (communityId!=0&&userId!=0) {
+			userInfoService.joinCommunity(communityId, userId);
+			UserInfoEntity user = userInfoService.selectById(userId);
+			json.put("user", user);
+		}else {
+			json.put("code", 400);
+			json.put("message", "加入社区失败");
+		}
+		return json;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	/**
 	 * 上传图片

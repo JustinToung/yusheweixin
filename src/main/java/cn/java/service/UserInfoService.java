@@ -18,4 +18,10 @@ public interface UserInfoService {
 	// 修改用户信息
 	public int updateUserInfo(UserInfoEntity user);
 
+	// 加入社区
+	public int joinCommunity(int communityId, int userId);
+	//通过id查询用户信息
+	public UserInfoEntity selectById(int id);
+	//查询每个社区的人数
+	public int queryCount(int communityId);
 }
